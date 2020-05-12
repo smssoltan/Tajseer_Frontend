@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="AR">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:400,700" rel="stylesheet">
+    <title>Bootstrap Simple Registration Form</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+</head>
+
+<body>
+    <div class="signup-form">
+        <form action="http://localhost:8080/users" (submit)="sendSignup()" method="post">
+            <h2>التسجيل</h2>
+            <p class="hint-text"></p>
+            <div class="radio">
+                <label><input type="radio" (click)="orgForm()"  name="radio"    >منظمة</label>
+            </div>
+            <div class="radio">
+                <label><input type="radio" (click)="userForm()" name="radio" checked>مستخدم للخدمة</label>
+            </div>
+            <div class="form-fields" *ngIf ="showMe">
+    
+                    <div class="form-group">
+                        <input type="text" class="form-control" name="full_name" placeholder="الاسم الثلاثي"
+                            required="required" [(ngModel)]="model.fullName">
+                    </div>
+                    <div class="form-group">
+                        <input type="text" class="form-control" name="national_ID" placeholder="الهوية الوطنية"
+                            required="required" [(ngModel)]="model.natID">
+                    </div>
+                    <div class="form-group">
+                        <input type="date" class="form-control" name="date_of_birth" placeholder="تاريخ الميلاد"
+                            required="required" [(ngModel)]="model.dob">
+                    </div>
+                    <div class="form-group">
+                        <input type="tel" class="form-control" name="phone_number" placeholder="رقم الجوال"
+                            required="required" [(ngModel)]="model.pNum">
+                    </div>
+                    <div class="form-group">
+                        <input type="email" class="form-control" name="email" placeholder="البريد الالكتروني"
+                            required="required" [(ngModel)]="model.email">
+                    </div>
+                    <div class="form-group">
+                        <input type="password" class="form-control" name="password" placeholder="كلمة السر"
+                            required="required" [(ngModel)]="model.password">
+                    </div>
+                    <div class="form-group">
+                        <input type="password" class="form-control" name="confirm_password" placeholder="تأكيد كلمة المرور"
+                            required="required">
+                    </div>
+
+            </div>
+            
+            <div class="form-fields" *ngIf ="showMeNot">
+                
+                <div class="form-group">
+                    <input type="text" class="form-control" name="org_name" placeholder="اسم المنظمة"
+                        required="required" [(ngModel)]="model.fullName">
+                </div>
+
+                <div class="form-group">
+                    <input type="address" class="form-control" name="address" placeholder="العنوان الوطني"
+                        required="required" [(ngModel)]="model.address">
+                </div>
+      
+                <div class="form-group">
+                    <input type="tel" class="form-control" name="phone_number" placeholder="رقم التواصل"
+                        required="required" [(ngModel)]="model.contactNum">
+                </div>
+                <div class="form-group">
+                    <input type="email" class="form-control" name="email" placeholder="البريد الالكتروني"
+                        required="required" [(ngModel)]="model.email">
+                </div>
+                <div class="form-group">
+                    <input type="password" class="form-control" name="password" placeholder="كلمة السر"
+                        required="required" [(ngModel)]="model.password">
+                </div>
+                <div class="form-group">
+                    <input type="password" class="form-control" name="confirm_password" placeholder="تأكيد كلمة المرور"
+                        required="required">
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="checkbox-inline"><input type="checkbox" required="required"> أنا أقبل <a href="#">بالشروط
+                        والأحكام</a></label>
+            </div>
+            <div class="form-group">
+                <button type="submit" class="btn btn-success btn-lg btn-block">سجل الآن</button>
+            </div>
+        </form>
+        <div class="text-center">لديك حساب بالفعل؟ <a routerLink="/login">سجل دخولك من هنا</a></div>
+    </div>
+</body>
+
+</html>

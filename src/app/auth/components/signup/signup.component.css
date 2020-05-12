@@ -1,0 +1,16 @@
+.form-group, .row{
+    display: block;
+    margin-block-start: 1.5em;
+    margin-block-end: 1.5em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+
+}
+
+.form-control{
+    text-align: center;
+}
+
+h2, input{
+    text-align: center;
+}
