@@ -17,11 +17,11 @@
         <form action="http://localhost:8080/users" (submit)="sendSignup()" method="post">
             <h2>التسجيل</h2>
             <p class="hint-text"></p>
-            <div class="radio">
-                <label><input type="radio" (click)="orgForm()"  name="radio"    >منظمة</label>
+            <div class="radio-option">
+                <label><input type="radio" class="radio" id="org" (click)="orgForm()" [(ngModel)]="model.authority" (check)="orgForm()" name="radio">منظمة</label>
             </div>
-            <div class="radio">
-                <label><input type="radio" (click)="userForm()" name="radio" checked>مستخدم للخدمة</label>
+            <div class="radio-option">
+                <label><input type="radio" class="radio" id="user" (click)="userForm()"  (check)="userForm()" name="radio"  checked>مستخدم للخدمة</label>
             </div>
             <div class="form-fields" *ngIf ="showMe">
     

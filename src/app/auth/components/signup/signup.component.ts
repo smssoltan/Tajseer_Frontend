@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { RouterLink, ROUTES, Router } from '@angular/router';
+import { NgModel } from '@angular/forms';
 
 @Component({
   selector: 'app-signup',
@@ -11,16 +12,36 @@ export class SignupComponent implements OnInit {
 
   showMe=true;
   showMeNot=false;
+  firstElement = document.getElementById("org")
+  secondElement = document.getElementById("user");
 
   orgForm(){
     this.showMe=false
     this.showMeNot=true
+    // SignupViewModel.authValues ={
+    // valueName: "ROLE_ORG",
+    // valueNum: 3};
+    
+
+    // console.log("THE AUTH NAME IS "+this.authValues);
+    
   }
 
   userForm(){
     this.showMeNot=false;
     this.showMe=true;
+    
+  //  this.authValues ={
+  //   valueName: "ROLE_USER",
+  //   valueNum: 2};
+    // console.log("THE AUTH NAME IS "+this.authValues);
+    
   }
+
+  // model:authorityModel ={
+  //   authName:'',
+  //   authID: null
+  // },
 
   model:SignupViewModel = {
 
@@ -31,13 +52,21 @@ export class SignupComponent implements OnInit {
     dob:'',
     pNum:'',
     address:'',
-    contactNum: ''  }
+    contactNum: '',
+    // authValues: ''
+    authority:{authName:"", authID:null},
+    //  a(){if(SignupComponent.prototype.orgForm.call){}}
+    }
+
+  
+
   constructor( private http: HttpClient,
     private router: Router
     ) { }
 
   ngOnInit(): void {
   }
+
 
   sendSignup():void{
 
@@ -64,9 +93,12 @@ export class SignupComponent implements OnInit {
     alert("مرحباً "+
     this.model.fullName+"."+"\n \n"+
     "تم تسجيلك بنجاح")
+    // alert(this.valueName);
   }
 
 }
+
+import {authorityModel} from "./authority.model"
 
 export interface SignupViewModel {
   fullName:string;
@@ -77,5 +109,10 @@ export interface SignupViewModel {
   pNum: string;
   address: string;
   contactNum: string;
-
+  authority: authorityModel
 }
+
+
+// export interface authValues {authName: string;
+  
+//   authNum:number};

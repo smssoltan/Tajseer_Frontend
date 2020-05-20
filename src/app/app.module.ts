@@ -7,8 +7,9 @@ import { SignupComponent } from './auth/components/signup/signup.component';
 import { Route } from '@angular/compiler/src/core';
 import { HomeComponent } from './auth/components/home/home.component';
 import { Page404Component } from './auth/components/page404/page404.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule  } from '@angular/forms';
 import {HttpClientModule} from "@angular/common/http";
+
 
 @NgModule({
   declarations: [
@@ -22,6 +23,7 @@ import {HttpClientModule} from "@angular/common/http";
     BrowserModule,
     HttpClientModule,
     FormsModule,
+    ReactiveFormsModule,
     RouterModule.forRoot([ 
     {path: '', component: HomeComponent},
     {path: 'login', component: LoginComponent},
