@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
-import { AuthService } from '../../auth.service';
-
+import { AuthService } from '../services/auth.service';
+import {AppComponent} from '../../../app.component'
 
 @Component({
   selector: 'app-login',
@@ -30,6 +30,7 @@ export class LoginComponent implements OnInit {
 
     this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
 }
+// for accessing to form fields
 
 get form() {
   return this.loginForm.controls;
@@ -48,8 +49,13 @@ handleLogin() {
     result => {
       alert("حياك الله، تم تسجيل دخولك بنجاح.")
       this.router.navigate([this.returnUrl]);
+      AppComponent.prototype.isUserLoggedIn =true ;
+      AppComponent.prototype.isUserLoggedOut =true;
+      console.log("User is Login status = "+AppComponent.prototype.isUserLoggedIn);
+      
     }, error => {
       this.error = true;
+      alert("ERROR")
     }
   )
 }

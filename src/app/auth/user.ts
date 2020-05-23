@@ -1,7 +1,7 @@
 import {authorityModel} from "./components/signup/authority.model"
 
 export interface User {
-    id: number
+    userID: number
     fullName:string;
     email:string;
     password:string;
@@ -10,5 +10,6 @@ export interface User {
     pNum: string;
     address: string;
     contactNum: string;
+    enabled: boolean,
     authority: authorityModel;
 }

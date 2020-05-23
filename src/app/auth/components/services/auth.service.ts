@@ -2,8 +2,8 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { map } from 'rxjs/operators';
 import { Observable, BehaviorSubject } from 'rxjs';
-import { User } from './user';
-
+import { User } from '../../user';
+import { tap } from 'rxjs/operators';
 
 
 @Injectable({
@@ -20,13 +20,22 @@ export class AuthService {
 //false means the user is not authenticated yet.
  authSubject  =  new  BehaviorSubject(false);
 
-  constructor(private http: HttpClient) { }
+ 
+private currentUserSubject: BehaviorSubject<User>;
+public currentUser: Observable<User>;
+
+  constructor(private httpClient: HttpClient) { 
+    
+this.currentUserSubject = new BehaviorSubject<User>
+(JSON.parse(localStorage.getItem('currentUser')));
+this.currentUser = this.currentUserSubject.asObservable();
+  }
 
   signIn(email: string, password: string){
     let headers = new HttpHeaders();
     headers = headers.append('Authorization', 'Basic ' + btoa(`${email}:${password}`));
 
-     return this.http.get<any>(this.LOGIN_SERVER, {headers: headers}).pipe(
+     return this.httpClient.get<any>(this.LOGIN_SERVER, {headers: headers}).pipe(
       map(user => {
 
         if (user) {
@@ -38,6 +47,27 @@ export class AuthService {
       })
     );
   }
+
+  login(email:string, password:string) {
+    return this.httpClient.post<{access_token:  string}>('http://localhost:8080/users', {email, password}).pipe(tap(res => {
+    localStorage.setItem('access_token', res.access_token);
+}))
+}
+
+register(email:string, password:string) {
+  return this.httpClient.post<{access_token: string}>('http://localhost:8080/users/addUser', {email, password}).pipe(tap(res => {
+  this.login(email, password)
+}))
+}
+
+logout() {
+  localStorage.removeItem('access_token');
+}
+
+public get loggedIn(): boolean{
+  return localStorage.getItem('access_token') !==  null;
+}
+
 
   signOut() {
        localStorage.removeItem('currentUser');
