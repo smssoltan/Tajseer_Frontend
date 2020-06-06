@@ -74,8 +74,9 @@ public get loggedIn(): boolean{
   }
 
   isAuthenticated() {
-    if (JSON.parse(localStorage.getItem('currentUser')))
+    if (JSON.parse(localStorage.getItem('currentUser'))){
       return true;
+    }
   }
 
 }

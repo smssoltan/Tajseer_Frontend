@@ -9,6 +9,7 @@ import { HomeComponent } from './auth/components/home/home.component';
 import { Page404Component } from './auth/components/page404/page404.component';
 import { FormsModule, ReactiveFormsModule  } from '@angular/forms';
 import {HttpClientModule} from "@angular/common/http";
+import { MyRequestsComponent } from './my-requests/my-requests.component';
 
 
 
@@ -19,6 +20,7 @@ import {HttpClientModule} from "@angular/common/http";
     SignupComponent,
     HomeComponent,
     Page404Component,
+    MyRequestsComponent,
   ],
   imports: [
     BrowserModule,
@@ -29,7 +31,8 @@ import {HttpClientModule} from "@angular/common/http";
     {path: '', component: HomeComponent},
     {path: 'login', component: LoginComponent},
     {path: 'signup', component: SignupComponent},
-    {path: '**', component: Page404Component}
+    {path: 'myRequests', component: MyRequestsComponent},
+    {path: '**', component: Page404Component},
     ])
   ],
   providers: [],

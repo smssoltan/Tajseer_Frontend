@@ -47,10 +47,9 @@ get form() {
 handleLogin() {
   this.authService.signIn(this.form.email.value, this.form.password.value).subscribe(
     result => {
-      alert("حياك الله، تم تسجيل دخولك بنجاح.")
+      alert("حياك الله، تم تسجيل دخولك بنجاح.");
+      this.authService.isAuthenticated();
       this.router.navigate([this.returnUrl]);
-      AppComponent.prototype.isUserLoggedIn =true ;
-      AppComponent.prototype.isUserLoggedOut =true;
       console.log("User is Login status = "+AppComponent.prototype.isUserLoggedIn);
       
     }, error => {

@@ -14,6 +14,7 @@ export class AppComponent {
   signUp ="التسجيل"
   signIn ="تسجيل الدخول"
   signOut = "تسجيل خروج"
+  myReq = "أدواتي"
   @Input() public isUserLoggedIn: boolean;
   @Input() public isUserLoggedOut: boolean;
   currentUser: User;
@@ -28,7 +29,18 @@ export class AppComponent {
      
     logout() {
     this.authenticationService.signOut();
+    this.isUserLoggedIn=false;
     this.router.navigate(['/login']);
+    this.isUserLoggedOut=false;
+    alert("log out succsefully :)")
+
+    }
+
+    isLogged(){
+    if(this.authenticationService.isAuthenticated()===true){
+      return true;
+    }
+
     }
   }
   
