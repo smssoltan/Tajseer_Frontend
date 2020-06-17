@@ -9,7 +9,6 @@ export interface User {
     dob: string;
     pNum: string;
     address: string;
-    contactNum: string;
-    enabled: boolean,
+    enabled: boolean;
     authority: authorityModel;
 }

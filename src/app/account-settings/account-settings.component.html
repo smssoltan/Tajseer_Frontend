@@ -1,50 +1,57 @@
 <h2>ادارة الحساب الشخصي</h2>
 <h3>هذه الصفحة مخصصة لتعديل البيانات الشخصية</h3>
-<br>
-<div class="form-group">
-    <strong>:تعديل الاسم الثلاثي</strong>
-    <br>
-    <input type="text" class="form-control" name="full_name" placeholder="{{fullName}}"
-        required="required" >
-</div>
-<br>
-<div class="form-group">
-    <strong>:تعديل الهوية الوطنية</strong>
-    <br>
-    <input type="text" class="form-control" name="national_ID" disabled="disabled" placeholder="{{nationalID}}"
-        required="required">
-</div>
-<br>
-<div class="form-group">
-    <strong>:تعديل تاريخ الميلاد</strong>
-    <br>
-    <input type="date" class="form-control" name="date_of_birth" placeholder="تاريخ الميلاد"
-        required="required" >
-</div>
-<br>
-<div class="form-group">
-    <strong>:تعديل رقم الجوال</strong>
-    <br>
-    <input type="tel" class="form-control" name="phone_number" placeholder="{{phoneNumber}}"
-        required="required" >
-</div>
-<br>
-<div class="form-group">
-    <strong>:تعديل البريد الالكتروني</strong>
-    <br>
-    <input type="email" class="form-control" name="email" placeholder="{{emailExtracting}}"
-        required="required" >
-</div>
-<br>
-<div class="form-group">
-    <strong>:تعديل كلمة المرور</strong>
-    <br>
-    <input type="password" class="form-control" name="email" placeholder="اكتب البريد كلمة المرور الجديدة"
-        required="required" >
-        <br>
-        <input type="password" class="form-control" name="email" placeholder="اعد كتابة كلمة المرور للتأكيد"
-        required="required" >
-</div>
-<br><br>
+<h3>{{passwordExtracted}}</h3>
 
-<button>حفظ</button>
+<br>
+<div class="update-form">
+    <form (submit)="updateUserInfo()">
+
+        <div class="form-group">
+            <strong>:تعديل الاسم الثلاثي</strong>
+            <br>
+            <input type="text" class="form-control" name="full_name" placeholder="{{fullName}}" required="required"
+                [(ngModel)]="model.fullName">
+        </div>
+        <br>
+        <div class="form-group">
+            <strong>:تعديل الهوية الوطنية</strong>
+            <br>
+            <input type="text" class="form-control" name="national_ID" disabled="disabled" placeholder="{{nationalID}}"
+                required="required">
+        </div>
+        <br>
+        <div class="form-group">
+            <strong>:تعديل تاريخ الميلاد</strong>
+            <br>
+            <input type="date" class="form-control" name="date_of_birth" placeholder="تاريخ الميلاد"
+                required="required" [(ngModel)]="model.dob">
+        </div>
+        <br>
+        <div class="form-group">
+            <strong>:تعديل رقم الجوال</strong>
+            <br>
+            <input type="tel" class="form-control" name="phone_number" placeholder="{{phoneNumber}}"
+                required="required" [(ngModel)]="model.pNum">
+        </div>
+        <br>
+        <div class="form-group">
+            <strong>:تعديل البريد الالكتروني</strong>
+            <br>
+            <input type="email" class="form-control" name="email" placeholder="{{emailExtracting}}" required="required" [(ngModel)]="model.email">
+        </div>
+        <br>
+        <div class="form-group">
+            <strong>:تعديل كلمة المرور</strong>
+            <br>
+            <input type="password" class="form-control" name="email" placeholder="اكتب البريد كلمة المرور الجديدة"
+                required="required" [(ngModel)]="model.password">
+            <br>
+            <input type="password" class="form-control" name="email" placeholder="اعد كتابة كلمة المرور للتأكيد"
+                required="required">
+        </div>
+        <br><br>
+
+        <button>حفظ</button>
+
+    </form>
+</div>

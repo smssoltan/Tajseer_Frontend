@@ -4,6 +4,8 @@ import { map } from 'rxjs/operators';
 import { Observable, BehaviorSubject } from 'rxjs';
 import { User } from '../../user';
 import { tap } from 'rxjs/operators';
+import { AccountSettingsComponent } from 'src/app/account-settings/account-settings.component';
+import { Certification } from '../../certification';
 
 
 @Injectable({
@@ -15,6 +17,10 @@ export class AuthService {
 //variable that holds the address of the authentication server.
   AUTH_SERVER = "http://localhost:8080/users/addUser";
   LOGIN_SERVER = "http://localhost:8080/users/";
+  headers = new HttpHeaders({
+    'Content-Type': 'application/json'
+  });
+
 //This variable tracks the user's authentication state. 
 //false means the user is not authenticated yet.
  authSubject  =  new  BehaviorSubject(false);
@@ -23,7 +29,7 @@ export class AuthService {
 private currentUserSubject: BehaviorSubject<User>;
 public currentUser: Observable<User>;
 
-  constructor(private httpClient: HttpClient, ) { 
+  constructor(private httpClient: HttpClient) { 
     
 this.currentUserSubject = new BehaviorSubject<User>
 (JSON.parse(localStorage.getItem('currentUser')));
@@ -31,9 +37,8 @@ this.currentUser = this.currentUserSubject.asObservable();
   }
 
   signIn(email: string, password: string){
-    let headers = new HttpHeaders();
-    headers = headers.append('Authorization', 'Basic ' + btoa(`${email}:${password}`));
-    let getInfo = this.httpClient.get<any>(this.LOGIN_SERVER, {headers: headers});
+    this.headers = this.headers.append('Authorization', 'Basic ' + btoa(`${email}:${password}`));
+    let getInfo = this.httpClient.get<any>(this.LOGIN_SERVER, {headers: this.headers});
      return getInfo.pipe(
       map(user => {
 
@@ -62,12 +67,8 @@ this.currentUser = this.currentUserSubject.asObservable();
     );
   }
 
-  
-// updateUserInfo():Observable<any>{
-//   let numID = AccountSettingsComponent.prototype.strToArray[0].substr(11,AccountSettingsComponent.prototype.strToArray[0].length-1);
-//   return 
-//   // this.http.put<any>(this.LOGIN_SERVER+[this.ID])
-// }
+
+ 
 
   signOut() {
        localStorage.removeItem('currentUser');
