@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Certification } from '../../certification'
+import { Certification } from '../Models/certification'
 import { Observable } from 'rxjs';
 
 @Injectable({

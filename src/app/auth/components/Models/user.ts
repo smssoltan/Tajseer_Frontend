@@ -1,4 +1,4 @@
-import {authorityModel} from "./components/signup/authority.model"
+import {authorityModel} from "../signup/authority.model"
 
 export interface User {
     userID: number

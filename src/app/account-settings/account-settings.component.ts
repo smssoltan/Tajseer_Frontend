@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { User } from '../auth/user';
+import { User } from '../auth/components/Models/user';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { SignupViewModel } from '../auth/components/signup/signup.component';
+import { catchError, tap } from 'rxjs/operators';
+import { of } from 'rxjs';
 
 @Component({
   selector: 'app-account-settings',
@@ -21,7 +23,8 @@ export class AccountSettingsComponent implements OnInit {
   numID = this.strToArray[0].substr(11,this.strToArray[0].length-1);
   emailExtracting=this.strToArray[4].substr(9,this.strToArray[4].length-10); //from index #9 untill total length -10 chars.
   passwordExtracted=this.strToArray[5].substr(12,this.strToArray[5].length-13)
-
+  tempo=JSON.parse(localStorage.getItem('currentUser')).roleName;
+  
   constructor(private httpClient: HttpClient) { }
 
   ngOnInit(): void { 
@@ -64,17 +67,11 @@ export class AccountSettingsComponent implements OnInit {
     let headers = new HttpHeaders({
       'Content-Type': 'application/json'
     });
+    
     headers = headers.append('Authorization', 'Basic ' + btoa(`${this.emailExtracting}:123456Ms`));
-    this.httpClient.put(url+this.numID+'/', this.model).subscribe(
-      res => 
-      {console.log("put completed!");
-      
-      alert("your edit was saved !");
-      }, 
-      err => {
-        alert("error")
-      }
-    );
+    this.httpClient.put(url+this.numID+'/', this.model);
+    
+
   }
 
 }

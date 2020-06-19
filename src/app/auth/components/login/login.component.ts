@@ -26,7 +26,7 @@ export class LoginComponent implements OnInit {
       password: ['', Validators.required]
     });
 
-    this.authService.signOut();
+    this.authService.logOut();
 
     this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
 }
@@ -45,7 +45,7 @@ get form() {
 // }
 
 handleLogin() {
-  this.authService.signIn(this.form.email.value, this.form.password.value).subscribe(
+  this.authService.login(this.form.email.value, this.form.password.value).subscribe(
     result => {
       alert("حياك الله، تم تسجيل دخولك بنجاح.");
       this.authService.isAuthenticated();
