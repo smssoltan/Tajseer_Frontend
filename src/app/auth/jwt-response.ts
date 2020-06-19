@@ -1,4 +1,4 @@
-import {authorityModel} from "./components/signup/authority.model"
+import {authorityModel} from "../components/signup/authority.model"
 
 export interface JwtResponse {
     user: {

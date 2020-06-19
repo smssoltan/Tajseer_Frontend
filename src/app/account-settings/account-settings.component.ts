@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { User } from '../auth/components/Models/user';
+import { User } from '../components/Models/user';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { SignupViewModel } from '../auth/components/signup/signup.component';
+import { SignupViewModel } from '../components/signup/signup.component';
 import { catchError, tap } from 'rxjs/operators';
 import { of } from 'rxjs';
 
