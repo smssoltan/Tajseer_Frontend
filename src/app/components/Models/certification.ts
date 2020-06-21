@@ -1,9 +1,10 @@
 export class Certification {
-
-    Name: string;
-    Type: string;
-    Description: string;
-    Date: string;
-    Status: string;
-    certificateDocument: ArrayBuffer[];
+constructor(
+    public Name: string,
+    public Type: string,
+    public Description: string,
+    public Date: string,
+    public Status: string,
+    public certificateDocument: ArrayBuffer[]
+){}
 }

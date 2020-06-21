@@ -1,78 +1,71 @@
 <h2>لايوجد لديك أي طلبات</h2>
 <main>
-    <div>
+  <div>
     <table>
-    <tr>
-      <th>اسم المنظمة</th>
-      <th>نوع الطلب</th>
-      <th>وصف للطلب</th>
-      <th>تاريخ رفع الطلب</th>
-      <th>حالة الطلب</th>
-      <th>المستندات المرفقة</th>
-    </tr>
-    <tr>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
+      <tr>
+        <th>اسم المنظمة</th>
+        <th>نوع الطلب</th>
+        <th>وصف للطلب</th>
+        <th>تاريخ رفع الطلب</th>
+        <th>حالة الطلب</th>
+        <th>المستندات المرفقة</th>
       </tr>
-    <tr>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-    </tr>
-    </table>
-    </div>
-    </main>
-    <div (click)="onClickMe()" class="centerImg">
-        <img  src="https://img.icons8.com/wired/64/000000/add-row.png"/>
-        </div>
-
-        <!-- Form PopUp -->
-    <div id="loginPopup">
-      <div class="form-popup" id="popupForm">
-        <form action="/action_page.php" class="form-container">
-          <h2>إضافة طلب توثيق</h2>
-          <label for="Type">
-          <strong>نوع الطلب</strong>
-          </label>
-          <br><br>
-          <select name="type" id="Type">
-            <option value="certificate">شهادة</option>
-            <option value="experience">خبرة</option>
-          </select>
-          <br><br>
-          <label for="Company">
-          <strong>اسم المنظمة المطلوب التوثيق منها</strong>
-          </label>
-          <br><br>
-          <select name="company" id="company">
-            <option value="elm">Elm</option>
-            <option value="stc">STC</option>
-            <option value="ibm">IBM</option>
-            <option value="alahli">AlAhli NCB</option>
-            <option value="ksu">KSU</option>
-            <option value="kau">KAU</option>
-            <option value="ikea">IKEA</option>
-            <option value="google">Google</option>
-            <option value="apple">Apple</option>
-          </select>
-          <br><br>
-          <label for="Description">
-          <strong>أكتب أي معلومات متعلقة بالطلب</strong>
-          </label>
-          <textarea rows="4" cols="30" name="Description" placeholder="GPA: 4.0. Bachlor's Degree in Computer Science, with honer"
-           form="popupForm"></textarea>
-          <strong>اضافة ملحقات للطلب</strong>
-          <input type="file" id="img" name="img" accept="image/*">
-          <button type="submit" class="btn">إرسال الطلب</button>
-          <button type="button" class="btn cancel" (click)="closeForm()" >إلغاء</button>
-        </form>
+      <div *ngFor="let request of requests$">
+        <tr>
+          <td>راندوم</td>
+          <td>راندوم</td>
+          <td>راندوم</td>
+          <td>random</td>
+          <td>random</td>
+          <td>random</td>
+        </tr>
       </div>
-    </div>
-      
+    </table>
+  </div>
+</main>
+<div (click)="onClickMe()" class="centerImg">
+  <img src="https://img.icons8.com/wired/64/000000/add-row.png" />
+</div>
+
+<!-- Form PopUp -->
+<div id="loginPopup">
+  <div class="form-popup" id="popupForm">
+    <form novalidate [formGroup]="myForm" class="form-container">
+      <h2>إضافة طلب توثيق</h2>
+      <label for="Type">
+        <strong>نوع الطلب</strong>
+      </label>
+      <br><br>
+      <select name="type" id="Type" type="Type" formControlName="Type">
+        <option value="certificate">شهادة</option>
+        <option value="experience">خبرة</option>
+      </select>
+      <br><br>
+      <label for="Company">
+        <strong>اسم المنظمة المطلوب التوثيق منها</strong>
+      </label>
+      <br><br>
+      <select name="company" id="company" type="Name" formControlName="Name">
+        <option value="elm">Elm</option>
+        <option value="stc">STC</option>
+        <option value="ibm">IBM</option>
+        <option value="alahli">AlAhli NCB</option>
+        <option value="ksu">KSU</option>
+        <option value="kau">KAU</option>
+        <option value="ikea">IKEA</option>
+        <option value="google">Google</option>
+        <option value="apple">Apple</option>
+      </select>
+      <br><br>
+      <label for="Description">
+        <strong>أكتب أي معلومات متعلقة بالطلب</strong>
+      </label>
+      <textarea rows="4" cols="30" type="Description" formControlName="Description" name="Description"
+        placeholder="GPA: 4.0. Bachlor's Degree in Computer Science, with honer" form="popupForm"></textarea>
+      <strong>اضافة ملحقات للطلب</strong>
+      <input type="file" id="img" name="img" accept="image/*" formControlName="certificateDocument">
+      <button type="submit" (click)="sendCert()" class="btn">إرسال الطلب</button>
+      <button type="button" class="btn cancel" (click)="closeForm()">إلغاء</button>
+    </form>
+  </div>
+</div>

@@ -1,5 +1,5 @@
 .form-group, .row{
-    display: block;
+    display: inline-block;
     margin-block-start: 1.5em;
     margin-block-end: 1.5em;
     margin-inline-start: 0px;

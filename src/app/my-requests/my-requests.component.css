@@ -24,7 +24,9 @@ main {
 }
   
   tr:nth-child(odd) {
+    display: inline-block;
     background-color: #eee;
+    width: 100%;
   }
   
   th {
@@ -32,10 +34,12 @@ main {
     color: #fff;
   }
   
-  th,
-  td {
+  th,td {
+    
+    display: inline-block;
     text-align: left;
     padding: 0.5em 1em;
+    
   }
 
   * {
